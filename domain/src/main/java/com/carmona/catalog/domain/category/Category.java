@@ -1,10 +1,11 @@
 package com.carmona.catalog.domain.category;
 
-import java.time.Instant;
-import java.util.UUID;
+import com.carmona.catalog.domain.AggregateRoot;
 
-public class Category {
-    private String id;
+import java.time.Instant;
+
+public class Category extends AggregateRoot<CategoryID> {
+    private CategoryID id;
     private String name;
     private String description;
     private boolean active;
@@ -12,7 +13,8 @@ public class Category {
     private Instant updatedAt;
     private Instant deletedAt;
 
-    private Category(final String id, final String name, final String description, final boolean active, final Instant createdAt, final Instant updatedAt, final Instant deletedAt) {
+    private Category(final CategoryID id, final String name, final String description, final boolean active, final Instant createdAt, final Instant updatedAt, final Instant deletedAt) {
+        super(id);
         this.id = id;
         this.name = name;
         this.description = description;
@@ -23,11 +25,11 @@ public class Category {
     }
 
     public static Category newCategory(final String name, final String description, final boolean active) {
-        final var id = UUID.randomUUID().toString();
+        final var id = CategoryID.unique();
         return new Category(id, name, description, active, Instant.now(), Instant.now(), null);
     }
 
-    public String getId() {
+    public CategoryID getId() {
         return id;
     }
 

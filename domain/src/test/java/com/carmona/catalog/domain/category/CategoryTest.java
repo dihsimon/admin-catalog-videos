@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 public class CategoryTest {
 
     @Test
-    public void givenValidParams_whenCallNewCategory_thenInstantiateCategory(){
+    public void givenValidParams_whenCallNewCategory_thenInstantiateCategory() {
         final var expectedName = "Filmes";
         final var expectedDescription = "A Categoria mais assistida";
         final var expectedIsActive = true;
